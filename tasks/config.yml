@@ -162,6 +162,14 @@
     mode: '0644'
   when: bbb_custom_presentation is defined
 
+- name: set default favicon
+  become: true
+  copy:
+    src: "{{ bbb_custom_ico }}"
+    dest: "{{ bbb_nginx_root | regex_replace('\\/$', '') }}/favicon.ico"
+    mode: '0644'
+  when: bbb_custom_ico is defined
+
 - name: Set cron.daily specifications
   become: true
   template:
